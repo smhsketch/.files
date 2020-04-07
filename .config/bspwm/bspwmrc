@@ -1,0 +1,50 @@
+#! /bin/sh
+
+sxhkd &
+nitrogen --restore &
+picom &
+syncthing &
+nm-applet &
+bspc monitor -d I II III IV V VI VII VIII IX X
+
+bspc config border_width        3
+bspc config window_gap          10
+
+bspc config split_ratio          0.5
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config pointer_modifier 	 mod4
+#bspc config border_radius 10
+
+#bspc rule -a Gimp desktop='^8' state=floating follow=on
+#bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+bspc rule -a chromium border=off
+bspc rule -a discord state=fullscreen
+#bspc rule -a kitty border=on
+
+# "smart-gaps" from i3 - doesn't work
+bspc config borderless_monocle	true
+bspc config gapless_monocle	true
+bspc config paddingless_monocle	true
+
+# misc configuration
+bspc config focus_follows_pointer true # make focus follow the mouse
+bspc config pointer_action1	move
+bspc config pointer_action2     resize_side
+bspc config pointer_action3     resize_corner
+
+# get xresources colors
+FOREGROUND=$(xrdb -query | grep 'foreground:'| awk '{print $NF}')
+BACKGROUND=$(xrdb -query | grep 'background:'| awk '{print $NF}')
+BLACK=$(xrdb -query | grep 'color0:'| awk '{print $NF}')
+RED=$(xrdb -query | grep 'color1:'| awk '{print $NF}')
+GREEN=$(xrdb -query | grep 'color2:'| awk '{print $NF}')
+YELLOW=$(xrdb -query | grep 'color3:'| awk '{print $NF}')
+BLUE=$(xrdb -query | grep 'color4:'| awk '{print $NF}')
+MAGENTA=$(xrdb -query | grep 'color5:'| awk '{print $NF}')
+CYAN=$(xrdb -query | grep 'color6:'| awk '{print $NF}')
+WHITE=$(xrdb -query | grep 'color7:'| awk '{print $NF}')
+BORDER="#F7533C"
